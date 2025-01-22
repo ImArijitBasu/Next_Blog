@@ -3,8 +3,9 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 const Profile = async () => {
-  const { getUser } = await getKindeServerSession();
+  const { getUser } =  getKindeServerSession();
   const user = await getUser();
+  console.log(user);
   if (!user) {
     return redirect("/api/auth/login");
   }
