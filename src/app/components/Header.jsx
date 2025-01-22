@@ -1,8 +1,13 @@
+"use server"
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import Link from "next/link";
 import React from "react";
 
-const Header = () => {
-  const user = true;
+const Header = async() => {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+  console.log(user);
+
   return (
     <div className=" bg-slate-200">
       <div className="navbar container mx-auto">
@@ -34,7 +39,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link className="btn btn-sm" href={"/"}>
+                <Link className="btn btn-sm" href={"/profile"}>
                   Profile
                 </Link>
               </li>
@@ -50,7 +55,7 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link className="btn btn-sm" href={"/"}>
+              <Link className="btn btn-sm" href={"/profile"}>
                 Profile
               </Link>
             </li>
@@ -58,17 +63,29 @@ const Header = () => {
         </div>
         <div className="navbar-end">
           {user ? (
-            <button>
-              <Link className="btn btn-sm" href={"/"}>
+            <>
+              <Link
+                className="btn border-2 border-gray-500 rounded-md px-2 py-1"
+                href="/api/auth/logout"
+              >
                 logout
               </Link>
-            </button>
+            </>
           ) : (
-            <button>
-              <Link className="btn btn-sm" href={"/"}>
-                login
+            <>
+              <Link
+                className="btn border-2 border-gray-500 rounded-md px-2 py-1"
+                href="/api/auth/register"
+              >
+                Sign UP
               </Link>
-            </button>
+              <Link
+                className="btn border-2 border-gray-500 rounded-md px-2 py-1"
+                href="/api/auth/login"
+              >
+                Sign in
+              </Link>
+            </>
           )}
         </div>
       </div>

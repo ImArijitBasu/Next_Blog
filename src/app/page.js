@@ -1,4 +1,4 @@
-import PostCard from "@/components/PostCard";
+import PostCard from "@/app/components/PostCard";
 import Image from "next/image";
 
 export default async function Home() {
