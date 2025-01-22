@@ -3,17 +3,23 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 const Profile = async () => {
-  const { getUser } = await  getKindeServerSession();
-  const user = await getUser();
-  console.log(user);
-  if (!user) {
-     redirect("/api/auth/login");
+  const session = await getKindeServerSession(); 
+  if (!session) {
+    redirect("/api/auth/login");
+    return null;
   }
+
+  const user = await session.getUser();  
+
+  if (!user) {
+    redirect("/api/auth/login");
+  }
+
+  console.log(user); 
   return (
     <>
       <h1 className="text-3xl font-bold text-center my-5 px-2">
-        {" "}
-        Welcome to your profile!
+        {" "}Welcome to your profile!
       </h1>
     </>
   );
