@@ -1,32 +1,34 @@
+'use client';
 
-import React from 'react';
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
-import { redirect } from 'next/navigation';
+import React, { useEffect } from 'react';
+import { useKindeAuth } from '@kinde-oss/kinde-auth-nextjs';
+import { useRouter } from 'next/navigation';
 
-const Profile = async () => {
-  const session = await getKindeServerSession();
-  const { isAuthenticated, getUser } = session;
+const Profile = () => {
+  const { isAuthenticated, getUser, login } = useKindeAuth();
+  const router = useRouter();
 
-  if (!isAuthenticated()) {
-    console.log("User is not authenticated. Redirecting to login...");
-    return redirect('/api/auth/login');
-  }
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      console.log("User is not authenticated. Redirecting to login...");
+      login();
+    }
+  }, [isAuthenticated, login]);
 
-  const user = await getUser();
-  console.log("User Data:", user);
+  const user = getUser();
 
   if (!user) {
-    console.log("User data is null despite being authenticated.");
-    // return redirect('/api/auth/login');
+    return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-center my-5">Welcome to your profile!</h1>
+      <h1 className="text-3xl font-bold text-center my-5">
+        Welcome to your profile, {user.first_name}!
+      </h1>
+      <p className="text-center">Email: {user.email}</p>
     </div>
   );
 };
-
-
 
 export default Profile;
