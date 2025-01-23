@@ -2,18 +2,16 @@
 import React from 'react';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import { redirect } from 'next/navigation';
-import { useKindeAuth } from '@kinde-oss/kinde-auth-nextjs';
 
 const Profile = async () => {
-  // const session = await getKindeServerSession();
-  // const { isAuthenticated, getUser } = session;
-  const {getUser} = useKindeAuth()
+  const session = await getKindeServerSession();
+  const { isAuthenticated, getUser } = session;
 
   // if (!isAuthenticated()) {
   //   console.log("User is not authenticated. Redirecting to login...");
   //   return redirect('/api/auth/login');
   // }
-
+  console.log(isAuthenticated);
   const user = await getUser();
   console.log("User Data:", user);
 
