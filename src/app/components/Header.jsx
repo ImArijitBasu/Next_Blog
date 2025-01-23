@@ -66,7 +66,7 @@ const Header = async() => {
             <>
               <Link
                 className="btn border-2 border-gray-500 rounded-md px-2 py-1"
-                href="/api/auth/logout"
+                href="/api/auth/logout" prefetch={false}
               >
                 logout
               </Link>
