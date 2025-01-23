@@ -7,9 +7,10 @@ const Profile = async () => {
   const { getUser } = await getKindeServerSession();
   const user = await getUser();
 
-  if (!user) {
-    return redirect('/api/auth/login');
-  }
+  // if (!user) {
+  //   return redirect('/api/auth/login');
+  // }
+  console.log(user);
 
   return (
     <div>
