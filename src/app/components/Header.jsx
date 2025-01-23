@@ -1,4 +1,4 @@
-"use server"
+// "use server"
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import Link from "next/link";
 import React from "react";

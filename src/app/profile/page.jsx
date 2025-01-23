@@ -16,8 +16,8 @@ const Profile = async () => {
   console.log("User Data:", user);
 
   if (!user) {
-    console.log("User data is null despite being authenticated.");
-    return redirect('/api/auth/login');
+    alert("User data is null despite being authenticated.");
+    // return redirect('/api/auth/login');
   }
 
   return (
