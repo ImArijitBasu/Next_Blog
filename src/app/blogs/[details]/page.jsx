@@ -1,7 +1,7 @@
 import React from "react";
 
 const Details = async ({ params }) => {
-  const { details } = params;
+  const { details } =await params;
   console.log(details);
 
   const res = await fetch(
@@ -14,8 +14,9 @@ const Details = async ({ params }) => {
       <h1 className="text-2xl font-bold text-center border-b-4 py-2 my-4 uppercase">
         Post Details
       </h1>
-      <h2 className="text-xl font-semibold">{post.title}</h2>
-      <p>{post.body}</p>
+      <h2 className="text-xl font-semibold">TITLE: {post.title}</h2>
+      <p className="text-xs pt-5 text-orange-400 text-left">details</p>
+      <p className="text-justify pb-5">{post.body}</p>
     </div>
   );
 };

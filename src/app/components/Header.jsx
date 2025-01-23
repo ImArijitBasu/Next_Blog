@@ -31,7 +31,7 @@ const Header = async() => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm space-y-2 dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
                 <Link className="btn btn-sm" href={"/"}>
@@ -48,7 +48,7 @@ const Header = async() => {
           <a className="btn btn-ghost text-xl">NEXT.BLOG</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 space-x-2 ">
             <li>
               <Link className="btn btn-sm" href={"/"}>
                 Home
@@ -74,7 +74,7 @@ const Header = async() => {
           ) : (
             <>
               <Link
-                className="btn border-2 border-gray-500 rounded-md px-2 py-1"
+                className="btn border-2 border-gray-500 rounded-md px-2 py-1 mr-2"
                 href="/api/auth/register"
               >
                 Sign UP
