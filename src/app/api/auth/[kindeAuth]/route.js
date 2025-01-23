@@ -6,7 +6,6 @@ export const GET = handleAuth({
     secure: true,
       httpOnly: true,
     //   sameSite: 'lax',
-    sameSite: None ,
     },
   });
   
