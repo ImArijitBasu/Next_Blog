@@ -1,18 +1,24 @@
-// pages/profile.js
+
 import React from 'react';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import { redirect } from 'next/navigation';
 
 const Profile = async () => {
   const session = await getKindeServerSession();
-  const {getUser} = session;
-  const user = await getUser();
-  console.log(session);
-  console.log(user);
+  console.log("Session Data:", session);
 
-  // if (!user) {
-  //   return redirect('/api/auth/login');
-  // }
+  if (!session) {
+    console.log("Session is null. Redirecting to login...");
+    return redirect('/api/auth/login');
+  }
+
+  const { getUser } = session;
+  const user = await getUser();
+  console.log("User Data:", user);
+
+  if (!user) {
+    return redirect('/api/auth/login');
+  }
 
   return (
     <div>
@@ -20,5 +26,6 @@ const Profile = async () => {
     </div>
   );
 };
+
 
 export default Profile;
