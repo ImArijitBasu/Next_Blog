@@ -5,18 +5,18 @@ import { redirect } from 'next/navigation';
 
 const Profile = async () => {
   const session = await getKindeServerSession();
-  console.log("Session Data:", session);
+  const { isAuthenticated, getUser } = session;
 
-  if (!session) {
-    console.log("Session is null. Redirecting to login...");
+  if (!isAuthenticated()) {
+    console.log("User is not authenticated. Redirecting to login...");
     return redirect('/api/auth/login');
   }
 
-  const { getUser } = session;
   const user = await getUser();
   console.log("User Data:", user);
 
   if (!user) {
+    console.log("User data is null despite being authenticated.");
     return redirect('/api/auth/login');
   }
 
@@ -26,6 +26,7 @@ const Profile = async () => {
     </div>
   );
 };
+
 
 
 export default Profile;
